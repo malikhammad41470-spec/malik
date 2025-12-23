@@ -105,16 +105,23 @@
             <div class="col-lg-6">
                 <div class="contact-card">
                     <h2 class="text-center mb-4">Message Me directly</h2>
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formsubmit.co/malikhammad41470@gmail.com" method="POST">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="New Portfolio Message!">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
+                                required>
                         </div>
                         <div class="mb-3">
-                            <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="Your Email"
+                                required>
                         </div>
                         <div class="mb-3">
-                            <textarea class="form-control" id="message" rows="4" placeholder="How can I help you?"
-                                required></textarea>
+                            <textarea name="message" class="form-control" id="message" rows="4"
+                                placeholder="How can I help you?" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-submit">Send Message</button>
                     </form>
@@ -127,7 +134,6 @@
     <footer>
         <div class="container text-center">
             <p>&copy; 2025 MUHAMMAD HAMMAD. All rights reserved.</p>
-            <p>Email: <a href="mailto:malikhammad41470@gmail.com" class="text-info">malikhammad41470@gmail.com</a></p>
         </div>
     </footer>
 
