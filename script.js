@@ -43,15 +43,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const formStatus = document.getElementById('formStatus');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            formStatus.classList.remove('d-none');
+            formStatus.classList.remove('d-none', 'text-success', 'text-danger');
             formStatus.innerHTML = '<div class="spinner-border spinner-border-sm text-info"></div> Sending...';
 
-            setTimeout(() => {
-                formStatus.innerHTML = '<span class="text-success"><i class="fas fa-check-circle"></i> Success! Hammad will contact you soon.</span>';
-                contactForm.reset();
-            }, 1500);
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    formStatus.innerHTML = '<span class="text-success"><i class="fas fa-check-circle"></i> Success! Your message has been sent to Hammad.</span>';
+                    contactForm.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                formStatus.innerHTML = '<span class="text-danger"><i class="fas fa-exclamation-circle"></i> Oops! Something went wrong. Please try again.</span>';
+            }
         });
     }
 
@@ -66,3 +81,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
